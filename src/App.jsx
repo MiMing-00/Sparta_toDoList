@@ -52,7 +52,7 @@ function App() {
               </div>
               <div className="buts">
                 <button onClick={() => switchTodolist(id)} className="btnStyle">
-                  {isDone === false ? "완료" : "취소"}
+                  {isDone === false ? "완료 ✔️" : "취소 ↩️"}
                 </button>
                 <button onClick={() => deleteTodolist(id)} className="btnStyle">
                   삭제
