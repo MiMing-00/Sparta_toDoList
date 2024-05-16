@@ -40,6 +40,16 @@ function App() {
     );
   };
 
+  // switch 상태 구현  + findIndex 매서드 으아악 어려워T.T.... ??
+  const index = (id) => {
+    todolists.findIndex((item) => item.id === id);
+
+    if (index !== -1) {
+      const newToDoList = [...todolist];
+      newToDoList = { ...newToDoList, isDone: !newToDoList.isDone };
+    }
+  };
+
   return (
     <div className="container">
       <h1>To Do List</h1>
