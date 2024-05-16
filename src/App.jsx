@@ -1,11 +1,25 @@
 import { useState } from "react";
+import ItemForm from "../component/ItemForm";
 import RenderToDoList from "../component/RenderToDoList";
 import "./App.css";
 
 function App() {
-  const [inputtodo, setInputToDo] = useState("");
   const [inputtitle, setInputtitle] = useState("");
-  const [todolists, setToDoList] = useState([]);
+  const [inputtodo, setInputToDo] = useState("");
+  const [todolists, setToDoList] = useState([
+    {
+      id: 1,
+      title: "리액트 공부하기!",
+      text: "리액트 신기해~!",
+      isDone: false,
+    },
+    {
+      id: 2,
+      title: "JS 복습하기!",
+      text: "복습~!",
+      isDone: true,
+    },
+  ]);
 
   // 추가
   const addToDo = (event) => {
@@ -18,7 +32,7 @@ function App() {
 
     setToDoList([
       ...todolists,
-      { id: Date.now(), text: inputtodo, title: inputtitle, isDone: false },
+      { id: Date.now(), title: inputtitle, text: inputtodo, isDone: false },
     ]);
     setInputtitle("");
     setInputToDo("");
@@ -40,38 +54,36 @@ function App() {
     );
   };
 
-  // switch 상태 구현  + findIndex 매서드 으아악 어려워T.T.... ??
-  const index = (id) => {
-    todolists.findIndex((item) => item.id === id);
+  // switch 상태 구현  + findIndex 매서드
+  //맵은 자체적으로 배열 반환 하지만 findindex는 찾는 거니까 새로운 배열 만들기
+  //find는 안 되는 건가??
+  // const index = (id) => {
+  //   todolists.findIndex((item) => item.id === id);
 
-    if (index !== -1) {
-      const newToDoList = [...todolist];
-      newToDoList = { ...newToDoList, isDone: !newToDoList.isDone };
-    }
-  };
+  //   if (index !== -1) {
+  //     const newToDoList = [...todolists];
+  //     newToDoList = { ...newToDoList, isDone: !newToDoList.isDone };
+  //   }
+  // };
+
+  // const findID = (id) => {
+  //   todolists.find((item) => item.id === id);
+
+  //   if
+
+  // }
 
   return (
     <div className="container">
       <h1>To Do List</h1>
-      <form onSubmit={addToDo} className="formStyle">
-        <input
-          type="text"
-          width="25%"
-          className="inputStyle"
-          placeholder="제목"
-          value={inputtitle}
-          onChange={(event) => setInputtitle(event.target.value)}
-        ></input>
-        <input
-          type="text"
-          width="25%"
-          className="inputStyle"
-          placeholder="내용"
-          value={inputtodo}
-          onChange={(event) => setInputToDo(event.target.value)}
-        ></input>
-        <button className="btnStyle">확인</button>
-      </form>
+      {/* Form */}
+      <ItemForm
+        addToDo={addToDo}
+        inputtitle={inputtitle}
+        setInputtitle={setInputtitle}
+        inputtodo={inputtodo}
+        setInputToDo={setInputToDo}
+      />
       {/* Working 🔥 */}
       <RenderToDoList
         isDone={false}
