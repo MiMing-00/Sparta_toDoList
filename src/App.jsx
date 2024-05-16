@@ -54,25 +54,6 @@ function App() {
     );
   };
 
-  // switch 상태 구현  + findIndex 매서드
-  //맵은 자체적으로 배열 반환 하지만 findindex는 찾는 거니까 새로운 배열 만들기
-  //find는 안 되는 건가??
-  // const index = (id) => {
-  //   todolists.findIndex((item) => item.id === id);
-
-  //   if (index !== -1) {
-  //     const newToDoList = [...todolists];
-  //     newToDoList = { ...newToDoList, isDone: !newToDoList.isDone };
-  //   }
-  // };
-
-  // const findID = (id) => {
-  //   todolists.find((item) => item.id === id);
-
-  //   if
-
-  // }
-
   return (
     <div className="container">
       <h1>To Do List</h1>

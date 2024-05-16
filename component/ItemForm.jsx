@@ -25,7 +25,9 @@ function ItemForm({
         value={inputtodo}
         onChange={(event) => setInputToDo(event.target.value)}
       ></input>
-      <button className="btnStyle">확인</button>
+      <button className="btnStyle" type="submit">
+        확인
+      </button>
     </form>
   );
 }
