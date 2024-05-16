@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RenderToDoList from "../component/RenderToDoList";
 import "./App.css";
 
 function App() {
@@ -39,31 +40,6 @@ function App() {
     );
   };
 
-  const renderTodolist = (isDone) => {
-    return (
-      <ul className="ulStyle">
-        {todolists
-          .filter((item) => item.isDone === isDone)
-          .map(({ id, title, text }) => (
-            <li key={id} className="liStyle">
-              <div className="titleText">
-                <span className="title">{title}</span>
-                <span className="text">{text}</span>
-              </div>
-              <div className="buts">
-                <button onClick={() => switchTodolist(id)} className="btnStyle">
-                  {isDone === false ? "완료 ✔️" : "취소 ↩️"}
-                </button>
-                <button onClick={() => deleteTodolist(id)} className="btnStyle">
-                  삭제
-                </button>
-              </div>
-            </li>
-          ))}
-      </ul>
-    );
-  };
-
   return (
     <div className="container">
       <h1>To Do List</h1>
@@ -86,10 +62,20 @@ function App() {
         ></input>
         <button className="btnStyle">확인</button>
       </form>
-      <h3 className="wdzone">Working 🔥</h3>
-      {renderTodolist(false)}
-      <h3 className="wdzone">Done! 🎂🎉</h3>
-      {renderTodolist(true)}
+      {/* Working 🔥 */}
+      <RenderToDoList
+        isDone={false}
+        todolists={todolists.filter((item) => !item.isDone)}
+        switchTodolist={switchTodolist}
+        deleteTodolist={deleteTodolist}
+      />
+      {/* Done! 🎂🎉 */}
+      <RenderToDoList
+        isDone={true}
+        todolists={todolists.filter((item) => item.isDone)}
+        switchTodolist={switchTodolist}
+        deleteTodolist={deleteTodolist}
+      />
     </div>
   );
 }
