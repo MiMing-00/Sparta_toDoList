@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-function ItemForm({
-  addToDo,
-  inputtitle,
-  setInputtitle,
-  inputtodo,
-  setInputToDo,
-}) {
+function ItemForm({ todolists, setToDoList }) {
+  const [inputtitle, setInputtitle] = useState("");
+  const [inputtodo, setInputToDo] = useState("");
+
+  const addToDo = (event) => {
+    event.preventDefault();
+
+    if (!inputtodo.trim() || !inputtitle.trim()) {
+      alert("제목과 할 일을 모두 입력해주세요.");
+      return;
+    }
+
+    setToDoList([
+      ...todolists,
+      { id: Date.now(), title: inputtitle, text: inputtodo, isDone: false },
+    ]);
+    setInputtitle("");
+    setInputToDo("");
+  };
+
   return (
     <form onSubmit={addToDo} className="formStyle">
       <input
