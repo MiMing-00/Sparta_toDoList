@@ -1,24 +1,14 @@
 import React from "react";
+import ToDoItem from "./ToDoItem";
 
-function RenderToDoList({ isDone, todolists, switchTodolist, deleteTodolist }) {
+function RenderToDoList({ isDone, todolists, setToDoList }) {
   return (
     <>
       <h3 className="wdzone">{isDone ? "Done! 🎂🎉" : "Working 🔥"}</h3>
       <ul className="ulStyle">
-        {todolists.map(({ id, title, text }) => (
-          <li key={id} className="liStyle">
-            <div className="titleText">
-              <span className="title">{title}</span>
-              <span className="text">{text}</span>
-            </div>
-            <div className="buts">
-              <button onClick={() => switchTodolist(id)} className="btnStyle">
-                {isDone ? "취소 ↩️" : "완료 ✔️"}
-              </button>
-              <button onClick={() => deleteTodolist(id)} className="btnStyle">
-                삭제 ☠️
-              </button>
-            </div>
+        {todolists.map((maptodo) => (
+          <li key={maptodo.id} className="liStyle">
+            <ToDoItem setToDoList={setToDoList} maptodo={maptodo} />
           </li>
         ))}
       </ul>
